@@ -22,6 +22,10 @@ on:
         required: true
         type: string
         description: NodeJS Version
+      docker_tag:
+        required: false
+        type: string
+        description: Docker tags
     secrets:
       REGISTRY_USERNAME:
         required: true
@@ -54,17 +58,7 @@ jobs:
         run: |
           echo "PYTHON_VERSION=${{ inputs.python_version }}" >> "$GITHUB_ENV"
           echo "NODE_VERSION=${{ inputs.node_version }}" >> "$GITHUB_ENV"
-
-      - id: Set docker tag
-        run: |
-          if [[ '${{ github.event_name }}' == 'pull_request' ]]; then
-            DOCKER_TAG="pr-${{ github.event.number }}"
-          else
-            DOCKER_TAG="gh-${{ github.run_id }}"
-          fi
-          echo "DOCKER_TAG: ${DOCKER_TAG}"
-          echo "ERPNEXT_DOCKER_TAG=${DOCKER_TAG}" >> $GITHUB_ENV
-
+          echo "ERPNEXT_DOCKER_TAG=${{ inputs.docker_tag }}" >> "$GITHUB_ENV"
 
       - name: Build
         uses: docker/bake-action@v4.0.0
