@@ -22,6 +22,10 @@ on:
         required: true
         type: string
         description: NodeJS Version
+      frappe_version:
+        required: false
+        type: string
+        description: Frappe version
       docker_tag:
         required: false
         type: string
@@ -58,6 +62,7 @@ jobs:
         run: |
           echo "PYTHON_VERSION=${{ inputs.python_version }}" >> "$GITHUB_ENV"
           echo "NODE_VERSION=${{ inputs.node_version }}" >> "$GITHUB_ENV"
+          echo "FRAPPE_VERSION=${{ inputs.frappe_version }}" >> "$GITHUB_ENV"
           echo "ERPNEXT_DOCKER_TAG=${{ inputs.docker_tag }}" >> "$GITHUB_ENV"
 
       - name: Build
