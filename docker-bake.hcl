@@ -13,15 +13,23 @@ variable NODE_VERSION {
 }
 
 variable "FRAPPE_VERSION" {
-    default = "develop"
+    default = "version-14"
 }
 
 variable "ERPNEXT_VERSION" {
-    default = "develop"
+    default = "version-14"
+}
+
+variable "ERPNEXT_DOCKER_REPO" {
+    default = "registry.vngcloud.vn/project_1685601601137/erpnext"
+}
+
+variable "ERPNEXT_DOCKER_TAG" {
+    default = "version-14-test"
 }
 
 variable "FRAPPE_REPO" {
-    default = "https://github.com/frappe/frappe"
+    default = "https://github.com/bacsicayxanh-hcm/frappe"
 }
 
 variable "ERPNEXT_REPO" {
@@ -89,5 +97,5 @@ target "erpnext" {
     context = "."
     dockerfile = "images/production/Containerfile"
     target = "erpnext"
-    tags = tag("erpnext", "${ERPNEXT_VERSION}")
+    tags = ["${ERPNEXT_DOCKER_REPO}:${ERPNEXT_DOCKER_TAG}"]
 }
