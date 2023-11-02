@@ -19,4 +19,4 @@ jobs:
       frappe_version:  ${{ github.event.client_payload.frappe-version }}
     secrets:
       REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
-      REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
+      REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
