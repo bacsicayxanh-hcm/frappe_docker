@@ -13,11 +13,11 @@ variable NODE_VERSION {
 }
 
 variable "FRAPPE_VERSION" {
-    default = "version-14"
+    default = "develop"
 }
 
 variable "ERPNEXT_VERSION" {
-    default = "version-14"
+    default = "develop"
 }
 
 variable "ERPNEXT_DOCKER_REPO" {
@@ -25,7 +25,7 @@ variable "ERPNEXT_DOCKER_REPO" {
 }
 
 variable "ERPNEXT_DOCKER_TAG" {
-    default = "version-14-test"
+    default = "develop"
 }
 
 variable "FRAPPE_REPO" {
