@@ -36,7 +36,8 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-
+    outputs:
+      imageTag: ${{ steps.args.outputs.ERPNEXT_DOCKER_TAG }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -50,6 +51,7 @@ jobs:
         run: python3 ./.github/scripts/get_latest_hash.py --version ${{ inputs.version }}
 
       - name: Set build args
+        id: : args
         run: |
           echo "PYTHON_VERSION=${{ inputs.python_version }}" >> "$GITHUB_ENV"
           echo "NODE_VERSION=${{ inputs.node_version }}" >> "$GITHUB_ENV"
