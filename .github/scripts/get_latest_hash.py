@@ -15,9 +15,7 @@ ErpnextRepo = "https://github.com/bacsicayxanh-hcm/erpnext"
 Owner = "bacsicayxanh-hcm"
 
 def get_latest_tag(repo: Repo, version: MajorVersion) -> str:
-    if version == "develop":
-        return "develop"
-    regex = rf"version-{version}"
+    regex = rf"version-{version}" if version != "develop" else rf"{version}"
     refs = subprocess.check_output(
         (
             "git",
