@@ -26,10 +26,6 @@ on:
         required: false
         type: string
         description: Frappe version
-      docker_tag:
-        required: false
-        type: string
-        description: Docker tags
     secrets:
       REGISTRY_USERNAME:
         required: true
@@ -51,14 +47,15 @@ jobs:
           driver-opts: network=host
 
       - name: Get latest versions
-        run: python3 ./.github/scripts/get_latest_tags.py --repo ${{ inputs.repo }} --version ${{ inputs.version }}
+        run: python3 ./.github/scripts/get_latest_hash.py --version ${{ inputs.version }}
 
       - name: Set build args
         run: |
           echo "PYTHON_VERSION=${{ inputs.python_version }}" >> "$GITHUB_ENV"
           echo "NODE_VERSION=${{ inputs.node_version }}" >> "$GITHUB_ENV"
           echo "FRAPPE_VERSION=${{ inputs.frappe_version }}" >> "$GITHUB_ENV"
-          echo "ERPNEXT_DOCKER_TAG=${{ inputs.docker_tag }}" >> "$GITHUB_ENV"
+          echo "ERPNEXT_VERSION=${{ inputs.frappe_version }}" >> "$GITHUB_ENV"
+          echo "ERPNEXT_DOCKER_TAG=${FRAPPE_VERSION}_${ERPNEXT_VERSION}" >> "$GITHUB_ENV"
 
       - name: Login
         uses: docker/login-action@v3

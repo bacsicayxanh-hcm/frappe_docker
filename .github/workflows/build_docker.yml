@@ -15,7 +15,6 @@ jobs:
       push: ${{ github.repository == 'frappe/frappe_docker' && github.event_name != 'pull_request' }}
       python_version: 3.11.6
       node_version: 18.18.2
-      docker_tag:  ${{ github.event.client_payload.gh-docker-tag }}
       frappe_version:  ${{ github.event.client_payload.frappe-version }}
     secrets:
       REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
