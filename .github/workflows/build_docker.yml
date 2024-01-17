@@ -3,7 +3,7 @@ name: Docker build
 on:
   # Triggered from frappe/frappe and frappe/erpnext on releases
   repository_dispatch:
-    types: [build-docker]
+    types: [ build-docker ]
   workflow_dispatch:
 
 jobs:
@@ -12,10 +12,10 @@ jobs:
     with:
       repo: erpnext
       version: "develop"
-      push: ${{ github.repository == 'frappe/frappe_docker' && github.event_name != 'pull_request' }}
+      push: true
       python_version: 3.11.6
       node_version: 18.18.2
-      frappe_version:  ${{ github.event.client_payload.frappe-version }}
+      frappe_version: ${{ github.event.client_payload.frappe-version }}
     secrets:
       REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
       REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
