@@ -31,7 +31,10 @@ on:
         required: true
       REGISTRY_PASSWORD:
         required: true
-
+    outputs:
+        imageTag:
+          description: "Image tags"
+          value: ${{ jobs.args.outputs.ERPNEXT_DOCKER_TAG }}
 jobs:
   build:
     name: Build
