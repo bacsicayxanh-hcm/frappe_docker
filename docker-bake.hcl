@@ -21,7 +21,7 @@ variable "ERPNEXT_VERSION" {
 }
 
 variable "ERPNEXT_DOCKER_REPO" {
-    default = "registry.vngcloud.vn/project_1685601601137/erpnext"
+    default = "vcr.vngcloud.vn/95972-florist/erpnext"
 }
 
 variable "ERPNEXT_DOCKER_TAG" {

@@ -33,7 +33,7 @@ jobs:
         with:
           args: |
             helm version
-            helm upgrade --install ${{ secrets.HELM_RELEASE_NAME }} ${{ secrets.HELM_CHART }} -n ${{ secrets.HELM_RELEASE_NAMESPACE }} --version ${{ secrets.HELM_RELEASE_VERSION }} --repo ${{ secrets.HELM_REPO }} --reuse-values --dry-run --set image.tag=$IMAGE_TAG
+            helm upgrade --install ${{ secrets.HELM_RELEASE_NAME }} ${{ secrets.HELM_CHART }} -n ${{ secrets.HELM_RELEASE_NAMESPACE }} --version ${{ secrets.HELM_RELEASE_VERSION }} --repo ${{ secrets.HELM_REPO }} --reuse-values --dry-run --set image.tag=$IMAGE_TAG --set image.repository=vcr.vngcloud.vn/95972-florist/erpnext
 
       - name: Deploy to K8s
         uses: wahyd4/kubectl-helm-action@master
@@ -42,5 +42,5 @@ jobs:
           IMAGE_TAG: ${{needs.build-docker-image.outputs.imageTag}}
         with:
           args: |
-            helm upgrade --install ${{ secrets.HELM_RELEASE_NAME }} ${{ secrets.HELM_CHART }} -n ${{ secrets.HELM_RELEASE_NAMESPACE }} --version ${{ secrets.HELM_RELEASE_VERSION }} --repo ${{ secrets.HELM_REPO }} --reuse-values --set image.tag=$IMAGE_TAG
+            helm upgrade --install ${{ secrets.HELM_RELEASE_NAME }} ${{ secrets.HELM_CHART }} -n ${{ secrets.HELM_RELEASE_NAMESPACE }} --version ${{ secrets.HELM_RELEASE_VERSION }} --repo ${{ secrets.HELM_REPO }} --reuse-values --set image.tag=$IMAGE_TAG --set image.repository=vcr.vngcloud.vn/95972-florist/erpnext
 
